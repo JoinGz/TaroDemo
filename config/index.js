@@ -1,3 +1,10 @@
+const path = require('path')
+const sassImportor = function(url) {
+  const reg = /^@styles\/(.*)/
+  return {
+    file: reg.test(url) ? path.resolve(__dirname, '..', 'src/styles', url.match(reg)[1]) : url
+  }
+}
 const config = {
   projectName: 'myApp',
   date: '2019-2-26',
@@ -22,9 +29,15 @@ const config = {
         'transform-class-properties',
         'transform-object-rest-spread'
       ]
+    },
+    sass: {
+      importer: sassImportor
     }
   },
   defineConstants: {
+  },
+  alias: {
+    '@styles': path.resolve(__dirname, '..', 'src/styles'),
   },
   copy: {
     patterns: [
@@ -89,6 +102,9 @@ const config = {
             generateScopedName: '[name]__[local]___[hash:base64:5]'
           }
         }
+      },
+      sassLoaderOption: {
+        importer: sassImportor
       }
     }
   }
