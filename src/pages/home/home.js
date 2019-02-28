@@ -6,6 +6,7 @@ import { add, minus, asyncAdd } from '../../actions/counter'
 import searchIcon from './assets/search.png'
 
 import './home.scss'
+import Loading from '@components/loading/loading'
 @connect(
   ({ counter }) => ({
     counter
@@ -23,20 +24,53 @@ import './home.scss'
   })
 )
 class Index extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      load: false,
+      num: 1
+    }
+  }
   config = {
     navigationBarTitleText: '首页'
   }
-
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState((old, newval) => {
+        console.log(old)
+        console.log(newval)
+        return {
+          load: true
+        }
+      })
+    }, 2000)
+  }
   componentWillReceiveProps(nextProps) {
     console.log(this.props, nextProps)
   }
-
+  add = () => {
+    // this.setState({ num: 123 })
+    // console.log(this.state.num) //1
+    // this.setState((old)=>{
+    //     console.log(old)
+    //     old.num++
+    //     return {
+    //       num: old.num
+    //     }
+    //   })
+    // this.setState({ num: 123 }, () => {
+    //   console.log(this.state.num) // 123
+    // })
+  }
   componentWillUnmount() {}
 
   componentDidShow() {}
 
   componentDidHide() {}
   render() {
+    if (!this.state.load) {
+      return <Loading />
+    }
     return (
       <View className="index">
         {/* <Button className='add_btn' onClick={this.props.add}>+</Button>
@@ -47,10 +81,14 @@ class Index extends Component {
         <View className="home__search">
           <View className="home__search-warp">
             <Image className="home__search__img" src={searchIcon} />
-            <Input className="home__search__input" type='text' placeholder='输入你想搜索的商品名' />
+            <Input
+              className="home__search__input"
+              type="text"
+              placeholder="输入你想搜索的商品名"
+            />
           </View>
         </View>
-        Home
+        <View onClick={this.add}>Home</View>
       </View>
     )
   }
