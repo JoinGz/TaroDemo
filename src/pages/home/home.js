@@ -4,12 +4,14 @@ import { connect } from '@tarojs/redux'
 
 import { add, minus, asyncAdd } from '../../actions/counter'
 import searchIcon from './assets/search.png'
-
+import { homeRecommend } from '../../actions/home'
 import './home.scss'
 import Loading from '@components/loading/loading'
+import Recommend from '../home/recommend3/index.js'
 @connect(
-  ({ counter }) => ({
-    counter
+  ({ counter, home }) => ({
+    counter,
+    home
   }),
   dispatch => ({
     add() {
@@ -20,6 +22,9 @@ import Loading from '@components/loading/loading'
     },
     asyncAdd() {
       dispatch(asyncAdd())
+    },
+    homeRecommend() {
+      dispatch(homeRecommend())
     }
   })
 )
@@ -35,15 +40,17 @@ class Index extends Component {
     navigationBarTitleText: '首页'
   }
   componentDidMount() {
-    setTimeout(() => {
-      this.setState((old, newval) => {
-        console.log(old)
-        console.log(newval)
-        return {
-          load: true
-        }
-      })
-    }, 2000)
+    // setTimeout(() => {
+    //   this.setState((old, newval) => {
+    //     console.log(old)
+    //     console.log(newval)
+    //     return {
+    //       load: true
+    //     }
+    //   })
+    // }, 2000)
+    this.props.homeRecommend()
+    this.setState({load: true})
   }
   componentWillReceiveProps(nextProps) {
     console.log(this.props, nextProps)
@@ -58,9 +65,11 @@ class Index extends Component {
     //       num: old.num
     //     }
     //   })
-    // this.setState({ num: 123 }, () => {
-    //   console.log(this.state.num) // 123
-    // })
+    this.setState({ num: 123 }, () => {
+      console.log(this.state.num) // 123
+    })
+    console.log(this.props);
+    
   }
   componentWillUnmount() {}
 
@@ -89,6 +98,7 @@ class Index extends Component {
           </View>
         </View>
         <View onClick={this.add}>Home</View>
+        <Recommend list = {this.props.home.recommend.data.data.itemList}/>
       </View>
     )
   }

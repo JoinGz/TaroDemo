@@ -1,4 +1,6 @@
-const isH5 = process.env.CLIENT_ENV === undefined
+const isH5 = process.env.CLIENT_ENV === 'h5'
+console.log(isH5);
+
 const HOST = '"https://miniapp.you.163.com"'
 const HOST_M = '"https://m.you.163.com"'
 module.exports = {
