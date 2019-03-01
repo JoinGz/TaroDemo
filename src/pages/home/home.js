@@ -1,5 +1,5 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Image, Input } from '@tarojs/components'
+import { View, Image, Input, Text } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 
 import { add, minus, asyncAdd } from '../../actions/counter'
@@ -97,8 +97,8 @@ class Index extends Component {
             />
           </View>
         </View>
-        <View onClick={this.add}>Home</View>
-        <Recommend list = {this.props.home.recommend.data.data.itemList}/>
+        {/* <Text onClick={this.add}>Home</Text> */}
+        <Recommend list = {this.props.home.recommend}/>
       </View>
     )
   }
