@@ -43,7 +43,7 @@ class Index extends Component {
         <Button className='dec_btn' onClick={this.props.asyncAdd}>async</Button>
         <View><Text>{this.props.counter.num}</Text></View>
         <View><Text>Hello, World</Text></View> */}
-        Cate
+        <Text>Cart</Text>
       </View>
     )
   }

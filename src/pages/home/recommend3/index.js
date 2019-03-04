@@ -10,9 +10,9 @@ export default class Recommend extends Component {
   }
 
   handleClick = (item) => {
-    // Taro.navigateTo({
-    //   url: `/pages/item/item?itemId=${item.id}`
-    // })
+    Taro.navigateTo({
+      url: `/pages/item/item?itemId=${item.id}`
+    })
   }
 
   render () {

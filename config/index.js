@@ -5,8 +5,6 @@ const sassImportor = function(url) {
     file: reg.test(url) ? path.resolve(__dirname, '..', 'src/styles', url.match(reg)[1]) : url
   }
 }
-console.log(path.resolve(__dirname, '..', 'src/styles'));
-
 const config = {
   projectName: 'myApp',
   date: '2019-2-26',

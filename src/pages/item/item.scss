@@ -1,0 +1,27 @@
+.item_swiper {
+  height: 750px;
+}
+.item_swiper-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.item_swiper-item-img {
+  width: 750px;
+  height: 750px;
+}
+.price {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 20px;
+}
+.red {
+  color: red;
+}
+.del {
+  color: #666;
+  font-size: 24px;
+  padding-top: 0.6rem;
+  padding-left: 0.2rem;
+}

@@ -1,0 +1,16 @@
+@import '../../../styles/theme.scss';
+
+.params__warp {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  // font-size: 24px;
+  @include border(top, 1px, dashed, $text-color-lighter);
+  @include eject(border-top-width, 1PX);
+}
+.params__title {
+  width: 30%;
+}
+.params__detail {
+  width: 70%;
+}
