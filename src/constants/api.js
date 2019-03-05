@@ -14,3 +14,5 @@ export const CDN = 'https://yanxuan.nosdn.127.net'
 export const API_HOME_RECOMMEND = `${host}/xhr/rcmd/index.json`
 // item
 export const ITEMDETAILAPI = `${host}/xhr/item/detail.json`
+// cate
+export const API_CATE = `${host}/xhr/list/category.json`

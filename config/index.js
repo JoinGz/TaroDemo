@@ -38,7 +38,8 @@ const config = {
   },
   alias: {
     '@styles': path.resolve(__dirname, '..', 'src/styles'),
-    '@components': path.resolve(__dirname, '..', 'src/components')
+    '@components': path.resolve(__dirname, '..', 'src/components'),
+    '@utils': path.resolve(__dirname, '..', 'src/utils')
   },
   copy: {
     patterns: [

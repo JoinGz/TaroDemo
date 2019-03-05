@@ -1,0 +1,27 @@
+.list_banner {
+  width: 100%;
+}
+.list_content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.list_box {
+  width: 33.333%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.list_img {
+  width: 144px;
+  height: 144px;
+}
+.list_txt_wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+.list_txt {
+  font-size: 24px;
+}
