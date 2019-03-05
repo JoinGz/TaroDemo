@@ -15,23 +15,7 @@ import { rejects } from 'assert'
     counter,
     home
   }),
-  dispatch => ({
-    add() {
-      dispatch(add())
-    },
-    dec() {
-      dispatch(minus())
-    },
-    asyncAdd() {
-      dispatch(asyncAdd())
-    },
-    homeRecommend() {
-      return new Promise((resolve, reject) => {
-        dispatch(homeRecommend())
-        resolve('ok')
-      })
-    }
-  })
+  {homeRecommend}
 )
 class Index extends Component {
   constructor(props) {
@@ -55,14 +39,15 @@ class Index extends Component {
     //   })
     // }, 2000)
     this.props.homeRecommend().then(res=>{
-      // this.setState({ load: true })
+      console.log(res);
+      this.setState({ load: true })
     })
   }
   componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps)
-    if(nextProps.home.recommend.length > 0){
-      this.setState({ load: true })
-    }
+    // console.log(this.props, nextProps)
+    // if(nextProps.home.recommend.length > 0){
+    //   this.setState({ load: true })
+    // }
   }
   add = () => {
     // this.setState({ num: 123 })

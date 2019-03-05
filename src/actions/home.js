@@ -8,7 +8,7 @@ let homeRecommendAction = obj => ({
 })
 export function homeRecommend() {
   return dispatch => {
-    Taro.request({
+    return Taro.request({
       url: API_HOME_RECOMMEND,
       header: {
         'content-type': 'application/json'
@@ -18,6 +18,7 @@ export function homeRecommend() {
     }).then(res => {
       console.log(res)
       dispatch(homeRecommendAction(res))
+      return res
     })
   }
 }
