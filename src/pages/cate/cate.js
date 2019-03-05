@@ -12,11 +12,9 @@ import './index.scss'
   ({ cate }) => ({
     cate
   }),
-  dispatch => ({
-    dispatchCateList() {
-      dispatch(dispatchCate())
-    }
-  })
+  {
+    dispatchCate
+  }
 )
 class Index extends Component {
   constructor(props) {
@@ -32,19 +30,26 @@ class Index extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(this.props, nextProps)
-    if (nextProps.cate.code === '200') {
-      this.state = {
-        loaded: true,
-        currentId: nextProps.cate.data.categoryList[0].id,
-        list: nextProps.cate.data.categoryList[0]
-      }
-    }
+    // console.log(this.props, nextProps)
+    // if (nextProps.cate.code === '200') {
+    //   this.state = {
+    //     loaded: true,
+    //     currentId: nextProps.cate.data.categoryList[0].id,
+    //     list: nextProps.cate.data.categoryList[0]
+    //   }
+    // }
   }
 
   componentWillUnmount() {}
   componentDidMount() {
-    this.props.dispatchCateList()
+    this.props.dispatchCate().then(res=>{
+      console.log(res);
+      this.setState({
+        loaded: true,
+        currentId: res.data.data.categoryList[0].id,
+        list: res.data.data.categoryList[0]
+      })
+    })
   }
   componentDidShow() {}
 
@@ -60,31 +65,26 @@ class Index extends Component {
       return <Loading />
     }
     let { currentId, list } = this.state
+    // let height = getWindowHeight()
     return (
       <View className="cateWarp">
         <ScrollView
             className='cateWarp__left'
             scrollY
-            scrollWithAnimation
-            scrollTop='0'
-            style={`height:${getWindowHeight()}`}
-            lowerThreshold='20'
-            upperThreshold='20'>
-            {this.props.cate.data.categoryList.map((v,i,arr)=>{
+            style='height: 150px;'>
+            <View>
+              {this.props.cate.data.categoryList.map((v,i,arr)=>{
               const active = v.id === currentId
               return (<View key={i} className="cateWarp__left__title__warp">
                 <Text onClick={this.changeID.bind(this,v.id,i,arr)} className={classNames('cateWarp__left__title', active && 'cateWarp__left__title--active')}>{v.name}</Text>
               </View>)
             })}
+            </View>
         </ScrollView>
         <ScrollView
             className='cateWarp__right'
             scrollY
-            scrollWithAnimation
-            scrollTop='0'
-            style={`height:${getWindowHeight()}`}
-            lowerThreshold='20'
-            upperThreshold='20'>
+            style='height: 150px;'>
             <View className='cateWarp__right-wrap'>
               <List list={list} />
             </View>

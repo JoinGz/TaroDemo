@@ -12,7 +12,7 @@ let itemAction = (obj) => ({
 })
 export function dispatchItem(id) {
   return dispatch => {
-    Taro.request({
+    return Taro.request({
       header: {
         'content-type': 'application/json'
       },
@@ -23,8 +23,8 @@ export function dispatchItem(id) {
         itemId: id
       }
     }).then(res => {
-      console.log(res)
       dispatch(itemAction(res))
+      return res
     })
   }
 }

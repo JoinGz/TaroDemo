@@ -12,11 +12,9 @@ import Imglist from './listimg/index.js'
   ({ item }) => ({
     item
   }),
-  dispatch => ({
-    getDetail(id) {
-      dispatch(dispatchItem(id))
-    }
-  })
+  {
+    dispatchItem
+  }
 )
 class Item extends Component {
   config = {
@@ -30,7 +28,10 @@ class Item extends Component {
     }
   }
   componentDidMount() {
-    this.props.getDetail(this.id)
+    this.props.dispatchItem(this.id).then(res=>{
+      console.log(res)
+      this.setState({loaded: true})
+    })
   }
   componentWillUnmount(){
     this.changeCode()
@@ -39,12 +40,12 @@ class Item extends Component {
       
   }
   componentWillReceiveProps(nextProps) {
-    if(nextProps.item.code !== null) {
-      this.setState({loaded: true})
-    }
+    // if(nextProps.item.code !== null) {
+    //   this.setState({loaded: true})
+    // }
   }
   render () {
-    let id = this.$router.params.itemId
+    // let id = this.$router.params.itemId
     if(!this.state.loaded){
       return (
         <Loading />

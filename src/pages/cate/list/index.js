@@ -6,9 +6,8 @@ class List extends Component {
     super(props)
   }
   componentWillReceiveProps(nextProps) {
-    console.log('--------------------')
-
-    console.log(this.props, nextProps)
+    // console.log('--------------------')
+    // console.log(this.props, nextProps)
   }
 
   componentWillUnmount() {}
@@ -26,8 +25,8 @@ class List extends Component {
         >
         {focusBannerList.map((v,i)=>{
           return (
-            <SwiperItem>
-              <View key={i}>
+            <SwiperItem key={i}>
+              <View >
                 <Image className="list_banner" mode="widthFix" src={v.picUrl} />
               </View>
             </SwiperItem>

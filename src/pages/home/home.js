@@ -8,8 +8,6 @@ import { homeRecommend } from '../../actions/home'
 import './home.scss'
 import Loading from '@components/loading/loading'
 import Recommend from '../home/recommend3/index.js'
-import { resolve } from 'url'
-import { rejects } from 'assert'
 @connect(
   ({ counter, home }) => ({
     counter,

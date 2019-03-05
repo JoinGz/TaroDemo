@@ -8,7 +8,7 @@ let cateAction = obj => ({
 })
 export function dispatchCate() {
   return dispatch => {
-    Taro.request({
+    return Taro.request({
       url: API_CATE,
       header: {
         'content-type': 'application/json'
@@ -16,8 +16,8 @@ export function dispatchCate() {
       method: 'GET',
       mode: 'cors'
     }).then(res => {
-      console.log(res)
       dispatch(cateAction(res))
+      return res
     })
   }
 }
