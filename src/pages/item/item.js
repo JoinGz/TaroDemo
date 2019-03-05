@@ -32,6 +32,12 @@ class Item extends Component {
   componentDidMount() {
     this.props.getDetail(this.id)
   }
+  componentWillUnmount(){
+    this.changeCode()
+  }
+  changeCode = () => {
+      
+  }
   componentWillReceiveProps(nextProps) {
     if(nextProps.item.code !== null) {
       this.setState({loaded: true})

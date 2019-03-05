@@ -8,6 +8,8 @@ import { homeRecommend } from '../../actions/home'
 import './home.scss'
 import Loading from '@components/loading/loading'
 import Recommend from '../home/recommend3/index.js'
+import { resolve } from 'url'
+import { rejects } from 'assert'
 @connect(
   ({ counter, home }) => ({
     counter,
@@ -24,7 +26,10 @@ import Recommend from '../home/recommend3/index.js'
       dispatch(asyncAdd())
     },
     homeRecommend() {
-      dispatch(homeRecommend())
+      return new Promise((resolve, reject) => {
+        dispatch(homeRecommend())
+        resolve('ok')
+      })
     }
   })
 )
@@ -49,11 +54,15 @@ class Index extends Component {
     //     }
     //   })
     // }, 2000)
-    this.props.homeRecommend()
-    this.setState({load: true})
+    this.props.homeRecommend().then(res=>{
+      // this.setState({ load: true })
+    })
   }
   componentWillReceiveProps(nextProps) {
     console.log(this.props, nextProps)
+    if(nextProps.home.recommend.length > 0){
+      this.setState({ load: true })
+    }
   }
   add = () => {
     // this.setState({ num: 123 })
@@ -68,8 +77,7 @@ class Index extends Component {
     this.setState({ num: 123 }, () => {
       console.log(this.state.num) // 123
     })
-    console.log(this.props);
-    
+    console.log(this.props)
   }
   componentWillUnmount() {}
 
@@ -98,7 +106,7 @@ class Index extends Component {
           </View>
         </View>
         {/* <Text onClick={this.add}>Home</Text> */}
-        <Recommend list = {this.props.home.recommend}/>
+        <Recommend list={this.props.home.recommend} />
       </View>
     )
   }

@@ -24,10 +24,10 @@ class List extends Component {
           className="test-h"
           autoplay
         >
-        {focusBannerList.map(v=>{
+        {focusBannerList.map((v,i)=>{
           return (
             <SwiperItem>
-              <View>
+              <View key={i}>
                 <Image className="list_banner" mode="widthFix" src={v.picUrl} />
               </View>
             </SwiperItem>
@@ -35,9 +35,9 @@ class List extends Component {
         })}
         </Swiper>
         <View className="list_content">
-          {subCategoryList.map(v=>{
+          {subCategoryList.map((v,i)=>{
             return (
-              <View className="list_box">
+              <View key={i} className="list_box">
                 <Image className="list_img" src={v.prettyBannerUrl} />
                 <View className="list_txt_wrap">
                   <Text className="list_txt">{v.name}</Text>

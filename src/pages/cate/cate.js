@@ -69,12 +69,10 @@ class Index extends Component {
             scrollTop='0'
             style={`height:${getWindowHeight()}`}
             lowerThreshold='20'
-            upperThreshold='20'
-            onScrolltoupper={this.onScrolltoupper}
-            onScroll={this.onScroll}>
+            upperThreshold='20'>
             {this.props.cate.data.categoryList.map((v,i,arr)=>{
               const active = v.id === currentId
-              return (<View className="cateWarp__left__title__warp">
+              return (<View key={i} className="cateWarp__left__title__warp">
                 <Text onClick={this.changeID.bind(this,v.id,i,arr)} className={classNames('cateWarp__left__title', active && 'cateWarp__left__title--active')}>{v.name}</Text>
               </View>)
             })}
@@ -86,9 +84,7 @@ class Index extends Component {
             scrollTop='0'
             style={`height:${getWindowHeight()}`}
             lowerThreshold='20'
-            upperThreshold='20'
-            onScrolltoupper={this.onScrolltoupper}
-            onScroll={this.onScroll}>
+            upperThreshold='20'>
             <View className='cateWarp__right-wrap'>
               <List list={list} />
             </View>

@@ -13,10 +13,10 @@ class Params extends Component {
           list.map((v,i)=>{
           return (<View key={i} className="params__warp">
               <View className="params__title">
-                <Text>{v.attrName}</Text>
+                <Text className="params__detail__text">{v.attrName}</Text>
               </View>
               <View className="params__detail">
-                <Text>{v.attrValue}</Text>
+                <Text className="params__detail__text">{v.attrValue}</Text>
               </View>
           </View>)
           })
