@@ -1,9 +1,8 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Image, Text } from '@tarojs/components'
+import { View, Image, Text, Swiper, SwiperItem } from '@tarojs/components'
 import { dispatchItem } from '../../actions/item'
 import { connect } from '@tarojs/redux'
 import Loading from "@components/loading/loading"
-import { Swiper, SwiperItem } from '@tarojs/components'
 import './item.scss'
 import Parmas from './params'
 import Imglist from './listimg/index.js'

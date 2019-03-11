@@ -1,29 +1,16 @@
 import Taro, { Component } from '@tarojs/taro'
-import { View, Button, Text } from '@tarojs/components'
-import { connect } from '@tarojs/redux'
-
-import { add, minus, asyncAdd } from '../../actions/counter'
-
-
-@connect(
-  ({ counter }) => ({
-    counter
-  }),
-  dispatch => ({
-    add() {
-      dispatch(add())
-    },
-    dec() {
-      dispatch(minus())
-    },
-    asyncAdd() {
-      dispatch(asyncAdd())
-    }
-  })
-)
+import { View, Text } from '@tarojs/components'
+import './Index.scss'
 class Index extends Component {
+  constructor() {
+    super(...arguments)
+    this.state = {
+      res: {},
+      net: {}
+    }
+  }
   config = {
-    navigationBarTitleText: '用户'
+    navigationBarTitleText: '用户信息'
   }
 
   componentWillReceiveProps(nextProps) {
@@ -32,18 +19,26 @@ class Index extends Component {
 
   componentWillUnmount() {}
 
-  componentDidShow() {}
+  componentDidShow() {
+    Taro.getSystemInfo({
+      success: res => console.log(res)
+    }).then(res => this.setState({ res }))
+    Taro.getNetworkType({
+      success: res => console.log(res.networkType)
+    }).then(net => this.setState({ net }))
+  }
 
   componentDidHide() {}
   render() {
+    let { res, net } = this.state
     return (
-      <View className="index">
-        {/* <Button className='add_btn' onClick={this.props.add}>+</Button>
-        <Button className='dec_btn' onClick={this.props.dec}>-</Button>
-        <Button className='dec_btn' onClick={this.props.asyncAdd}>async</Button>
-        <View><Text>{this.props.counter.num}</Text></View>
-        <View><Text>Hello, World</Text></View> */}
-        <Text>User</Text>
+      <View className="user">
+        <Text className="user__text">当前系统为： {res.system} </Text>
+        <Text className="user__text">
+          当前手机为： {res.brand} {res.model}{' '}
+        </Text>
+        <Text className="user__text">当前语言为： {res.language} </Text>
+        <Text className="user__text">当前网络为： {net.networkType} </Text>
       </View>
     )
   }

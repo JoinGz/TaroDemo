@@ -65,13 +65,15 @@ class Index extends Component {
       return <Loading />
     }
     let { currentId, list } = this.state
-    // let height = getWindowHeight()
+    let height = getWindowHeight()
+    console.log(`height:${height}`);
+    
     return (
       <View className="cateWarp">
         <ScrollView
             className='cateWarp__left'
             scrollY
-            style='height: 150px;'>
+            style={{ height }}>
             <View>
               {this.props.cate.data.categoryList.map((v,i,arr)=>{
               const active = v.id === currentId
@@ -84,7 +86,8 @@ class Index extends Component {
         <ScrollView
             className='cateWarp__right'
             scrollY
-            style='height: 150px;'>
+            style={{ height }}
+        >
             <View className='cateWarp__right-wrap'>
               <List list={list} />
             </View>
